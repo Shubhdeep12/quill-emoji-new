@@ -1,0 +1,151 @@
+:root {
+  --quill-emoji-picker-bg: #ffffff;
+  --quill-emoji-picker-border: #d7dce5;
+  --quill-emoji-picker-shadow: 0 8px 26px rgba(19, 29, 46, 0.18);
+  --quill-emoji-text: #0f172a;
+  --quill-emoji-muted: #475569;
+  --quill-emoji-hover-bg: #eef2ff;
+  --quill-emoji-active-bg: #dbeafe;
+  --quill-emoji-radius: 12px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --quill-emoji-picker-bg: #0f172a;
+    --quill-emoji-picker-border: #334155;
+    --quill-emoji-picker-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+    --quill-emoji-text: #f8fafc;
+    --quill-emoji-muted: #cbd5e1;
+    --quill-emoji-hover-bg: #1e293b;
+    --quill-emoji-active-bg: #334155;
+  }
+}
+
+.ql-emoji,
+.ql-emoji-textarea-button {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 1.05rem;
+  line-height: 1;
+  padding: 6px;
+}
+
+.ql-emoji-picker,
+.ql-emoji-inline-menu,
+.ql-emoji-shortname-menu {
+  position: absolute;
+  z-index: 1100;
+  background: var(--quill-emoji-picker-bg);
+  border: 1px solid var(--quill-emoji-picker-border);
+  border-radius: var(--quill-emoji-radius);
+  box-shadow: var(--quill-emoji-picker-shadow);
+  color: var(--quill-emoji-text);
+}
+
+.ql-emoji-picker {
+  width: 312px;
+  max-height: 380px;
+  overflow: hidden;
+  padding: 8px;
+}
+
+.ql-emoji-search {
+  width: 100%;
+  border: 1px solid var(--quill-emoji-picker-border);
+  border-radius: 10px;
+  background: transparent;
+  color: inherit;
+  padding: 8px 10px;
+  margin-bottom: 8px;
+}
+
+.ql-emoji-tabs {
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  margin-bottom: 8px;
+}
+
+.ql-emoji-tab {
+  border: none;
+  background: transparent;
+  color: var(--quill-emoji-muted);
+  cursor: pointer;
+  border-radius: 999px;
+  padding: 4px 8px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.ql-emoji-tab:hover {
+  background: var(--quill-emoji-hover-bg);
+  color: var(--quill-emoji-text);
+}
+
+.ql-emoji-grid {
+  display: grid;
+  grid-template-columns: repeat(8, minmax(0, 1fr));
+  gap: 6px;
+  max-height: 280px;
+  overflow-y: auto;
+  padding-right: 2px;
+}
+
+.ql-emoji-item,
+.ql-emoji-inline-item {
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  line-height: 1;
+  padding: 6px;
+}
+
+.ql-emoji-item:hover,
+.ql-emoji-inline-item:hover,
+.ql-emoji-shortname-item:hover,
+.ql-emoji-shortname-item.is-active {
+  background: var(--quill-emoji-hover-bg);
+}
+
+.ql-emoji-inline-menu {
+  width: 220px;
+  max-height: 240px;
+  padding: 8px;
+  overflow: auto;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 4px;
+}
+
+.ql-emoji-shortname-menu {
+  width: 240px;
+  padding: 4px;
+}
+
+.ql-emoji-shortname-item {
+  width: 100%;
+  text-align: left;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 6px 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: inherit;
+}
+
+.ql-emoji-shortname-item .name {
+  color: var(--quill-emoji-muted);
+  font-size: 12px;
+}
+
+.ql-emojiblot {
+  display: inline-block;
+  line-height: 1;
+  font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
+}

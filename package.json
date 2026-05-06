@@ -1,0 +1,88 @@
+{
+  "name": "quill-emoji-new",
+  "version": "1.0.1",
+  "description": "Modern emoji modules for Quill 1.x and 2.x with TypeScript, dual ESM/CJS output, and native Unicode rendering.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/v2/index.cjs",
+  "module": "./dist/v2/index.mjs",
+  "types": "./dist/v2/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/v2/index.d.ts",
+        "default": "./dist/v2/index.mjs"
+      },
+      "require": {
+        "types": "./dist/v2/index.d.ts",
+        "default": "./dist/v2/index.cjs"
+      }
+    },
+    "./v1": {
+      "import": {
+        "types": "./dist/v1/index.d.ts",
+        "default": "./dist/v1/index.mjs"
+      },
+      "require": {
+        "types": "./dist/v1/index.d.ts",
+        "default": "./dist/v1/index.cjs"
+      }
+    },
+    "./style.css": "./dist/quill-emoji.css"
+  },
+  "files": [
+    "dist/",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "clean": "rimraf dist coverage",
+    "data": "tsx scripts/generate-emoji-data.ts",
+    "build:ts": "tsup",
+    "build:css": "node scripts/copy-css.mjs",
+    "build": "pnpm run clean && pnpm run data && pnpm run build:ts && pnpm run build:css",
+    "typecheck": "tsc --noEmit",
+    "lint": "biome check src scripts test package.json tsconfig.json tsup.config.ts vitest.config.ts biome.json",
+    "lint:fix": "biome check --write src scripts test package.json tsconfig.json tsup.config.ts vitest.config.ts biome.json",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "ci": "pnpm run lint && pnpm run typecheck && pnpm run test && pnpm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shubhdeep12/quill-emoji-new.git"
+  },
+  "keywords": [
+    "quill",
+    "emoji",
+    "editor",
+    "typescript",
+    "rich-text"
+  ],
+  "author": "contentco and contributors",
+  "bugs": {
+    "url": "https://github.com/Shubhdeep12/quill-emoji-new/issues"
+  },
+  "homepage": "https://github.com/Shubhdeep12/quill-emoji-new#readme",
+  "packageManager": "pnpm@10.11.0",
+  "dependencies": {
+    "fuse.js": "^7.1.0"
+  },
+  "peerDependencies": {
+    "quill": ">=1.3.5 <3"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.4.14",
+    "@changesets/cli": "^2.29.6",
+    "@types/node": "^25.6.0",
+    "emojibase": "^17.0.0",
+    "emojibase-data": "^17.0.0",
+    "jsdom": "^29.1.1",
+    "quill": "^2.0.3",
+    "rimraf": "^6.0.1",
+    "tsup": "^8.5.0",
+    "tsx": "^4.20.3",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.5"
+  }
+}

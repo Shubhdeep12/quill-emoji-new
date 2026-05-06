@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>quill-emoji-new demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/quill@2/dist/quill.snow.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../dist/quill-emoji.css" />
+    <style>
+      body {
+        font-family: Inter, system-ui, sans-serif;
+        margin: 40px auto;
+        max-width: 860px;
+      }
+      #editor {
+        height: 280px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>quill-emoji-new demo</h2>
+    <div id="toolbar">
+      <button class="ql-bold"></button>
+      <button class="ql-italic"></button>
+      <button class="ql-emoji"></button>
+    </div>
+    <div id="editor"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/quill@2/dist/quill.js"></script>
+    <script type="module">
+      import { registerQuillEmojiV2 } from "../dist/v2/index.mjs";
+
+      registerQuillEmojiV2(window.Quill);
+
+      const quill = new window.Quill("#editor", {
+        theme: "snow",
+        modules: {
+          toolbar: {
+            container: "#toolbar",
+            handlers: { emoji: () => {} }
+          },
+          "emoji/toolbar": true,
+          "emoji/shortname": true,
+          "emoji/textarea": true
+        },
+        placeholder: "Type :rocket: or use the emoji button."
+      });
+
+      window.quill = quill;
+    </script>
+  </body>
+</html>
