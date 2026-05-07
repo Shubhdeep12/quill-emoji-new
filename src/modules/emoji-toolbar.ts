@@ -55,12 +55,16 @@ export class EmojiToolbar {
       return;
     }
 
-    const button = createElement("button", "ql-emoji");
-    button.type = "button";
-    button.ariaLabel = this.options.buttonAriaLabel;
-    button.textContent = this.options.buttonIcon;
-    button.addEventListener("click", () => this.togglePicker(button));
-    toolbar.append(button);
+    let button = toolbar.querySelector("button.ql-emoji") as HTMLButtonElement | null;
+    if (!button) {
+      button = createElement("button", "ql-emoji");
+      button.type = "button";
+      button.ariaLabel = this.options.buttonAriaLabel;
+      button.textContent = this.options.buttonIcon;
+      toolbar.append(button);
+    }
+    const anchor = button;
+    anchor.addEventListener("click", () => this.togglePicker(anchor));
   }
 
   private togglePicker(anchor: HTMLElement): void {

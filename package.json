@@ -1,6 +1,6 @@
 {
   "name": "quill-emoji-new",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Modern emoji modules for Quill 1.x and 2.x with TypeScript, dual ESM/CJS output, and native Unicode rendering.",
   "license": "MIT",
   "type": "module",

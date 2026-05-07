@@ -1,5 +1,11 @@
 # quill-emoji-new
 
+## 1.2.0
+
+### Minor Changes
+
+- to not add emoji button in toolbar when exists already
+
 ## 1.1.0
 
 ### Minor Changes

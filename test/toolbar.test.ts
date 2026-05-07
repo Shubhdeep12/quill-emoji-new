@@ -32,6 +32,22 @@ beforeEach(() => {
 });
 
 describe("EmojiToolbar options", () => {
+  it("reuses existing toolbar emoji button without adding duplicates", () => {
+    const quill = createToolbarQuillStub();
+    const toolbar = quill.getToolbar();
+    const existingButton = document.createElement("button");
+    existingButton.className = "ql-emoji";
+    existingButton.type = "button";
+    toolbar.append(existingButton);
+
+    new EmojiToolbar(quill as any);
+
+    expect(toolbar.querySelectorAll("button.ql-emoji")).toHaveLength(1);
+
+    existingButton.click();
+    expect(document.querySelector(".ql-emoji-picker")).toBeTruthy();
+  });
+
   it("uses customizable icon and aria label", () => {
     const quill = createToolbarQuillStub();
     new EmojiToolbar(quill as any, { buttonIcon: "😎", buttonAriaLabel: "Open custom picker" });
