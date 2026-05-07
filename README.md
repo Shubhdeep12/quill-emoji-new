@@ -34,9 +34,13 @@ bun add quill-emoji-new
 
 ```ts
 import Quill from "quill";
-import { registerQuillEmojiV2 } from "quill-emoji-new";
+import { registerAliases, registerQuillEmojiV2 } from "quill-emoji-new";
 import "quill-emoji-new/style.css";
 
+registerAliases({
+  grinning: "grinning_face",
+  smile: "grinning_face_with_smiling_eyes"
+});
 registerQuillEmojiV2(Quill);
 
 const quill = new Quill("#editor", {
@@ -81,6 +85,7 @@ registerQuillEmojiV1(Quill);
 
 - `registerQuillEmojiV2(Quill, options?)`
 - `registerQuillEmojiV1(Quill, options?)`
+- `registerAliases(aliases)`
 
 ### Command
 
@@ -93,6 +98,7 @@ registerQuillEmojiV1(Quill);
 - `emojiById`
 - `emojiByShortcode`
 - `getEmojiByShortcode(shortcode)`
+- `registerAliases(aliases)`
 - `EmojiSearch`
 
 ## Configuration
@@ -102,7 +108,10 @@ Top-level:
 - `emojis?: EmojiValue[]`
 - `customEmojis?: EmojiValue[]`
 - `forceFallbackImages?: boolean`
+- `legacyAliases?: Record<string, string>` (applied by `registerQuillEmojiV2`)
 - `modules?: { toolbar?, shortname?, textarea? }`
+
+`legacyAliases` maps legacy shortcodes to canonical emoji ids. Unknown ids are ignored and existing shortcodes are never overridden.
 
 `emoji/toolbar`:
 

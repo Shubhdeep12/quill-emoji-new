@@ -21,6 +21,7 @@ export type RegisterEmojiOptions = {
   emojis?: EmojiValue[];
   customEmojis?: EmojiValue[];
   forceFallbackImages?: boolean;
+  legacyAliases?: Record<string, string>;
   modules?: EmojiModulesOptions;
 };
 

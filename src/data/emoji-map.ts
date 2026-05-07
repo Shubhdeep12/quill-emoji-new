@@ -15,3 +15,12 @@ for (const emoji of EMOJI_DATA) {
 export function getEmojiByShortcode(shortcode: string): EmojiValue | undefined {
   return emojiByShortcode.get(shortcode.toLowerCase());
 }
+
+export function registerAliases(aliases: Record<string, string>): void {
+  for (const [alias, targetId] of Object.entries(aliases)) {
+    const normalizedAlias = alias.toLowerCase();
+    if (emojiByShortcode.has(normalizedAlias)) continue;
+    const target = emojiById.get(targetId);
+    if (target) emojiByShortcode.set(normalizedAlias, target);
+  }
+}

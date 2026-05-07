@@ -1,7 +1,12 @@
 import { createEmojiBlotV2 } from "../blots/emoji-blot-v2";
 import type { EmojiBlotValue, EmojiValue } from "../blots/types";
 import { EMOJI_DATA, EMOJI_GROUPS } from "../data/emoji-data";
-import { emojiById, emojiByShortcode, getEmojiByShortcode } from "../data/emoji-map";
+import {
+  emojiById,
+  emojiByShortcode,
+  getEmojiByShortcode,
+  registerAliases
+} from "../data/emoji-map";
 import {
   EmojiShortname,
   type EmojiShortnameOptions,
@@ -24,6 +29,9 @@ type QuillLike = {
 };
 
 export function registerQuillEmojiV2(Quill: QuillLike, options: RegisterEmojiOptions = {}): void {
+  if (options.legacyAliases) {
+    registerAliases(options.legacyAliases);
+  }
   const EmojiBlot = createEmojiBlotV2(Quill, {
     forceFallbackImages: options.forceFallbackImages
   });
@@ -82,5 +90,6 @@ export {
   EmojiToolbar,
   emojiById,
   emojiByShortcode,
-  getEmojiByShortcode
+  getEmojiByShortcode,
+  registerAliases
 };
